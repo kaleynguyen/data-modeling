@@ -21,9 +21,10 @@
 * Plans
 
 ## Step 4: identify facts
-* fact_user_signup
-* fact_plan
-* fact_feature
+* fct_user_signup
+* fct_plan
+* fct_feature
+* fct_event
 
 # ER
 ![github-er](./github-er.png "Github ERD)"
@@ -31,10 +32,30 @@
 # Business Questions
 * How many new accounts signed up daily?
 ```sql
+SELECT 	DATE_TRUNC(fct_user_signup.created_at, DAY) as signup_date,
+		COUNT(user_id)
+FROM fct_user_signup
+GROUP BY 1
 ```
 * How long does it take for an account to convert from a free account?
+
+We can track the plan_type as a type 2 slowly changing dimension and calculate the differences between the valid_to and valid_from, group by the user_id and plan_type to find out how long it takes for an account to convert from a free account to a paid account. 
+
 ```sql
+SELECT user_id, 
+	   plan_type, 
+	   COALESCE(valid_to, current_timestamp()) - valid_from  
+FROM fct_plan
+GROUP BY 1,2
 ```
 * Which features do paid accounts tend to use more frequently than non-converted acccounts?
+
 ```sql
+SELECT plan_type, count(*)
+FROM 
+	(SELECT UNNEST(features) FROM fct_feature
+	LEFT JOIN dim_user ON dim_user.id = fct_feature.user_id
+	LEFT JOIN fct_plan ON dim_user.id = fct_plan.user_id) t
+GROUP BY 1
+ORDER BY 2;
 ```
