@@ -26,7 +26,7 @@
 * fact_feature
 
 # ER
-![github-er](./github-er.png "Github ERD)"
+![github-er](./github-er.png "Github ERD")
 
 # Business Questions
 * How many new accounts signed up daily?
