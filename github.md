@@ -27,7 +27,7 @@
 * fct_event
 
 # ER
-![github-er](./github-er.png "Github ERD)"
+![](er-github.png)
 
 # Business Questions
 * How many new accounts signed up daily?
@@ -59,3 +59,4 @@ FROM
 GROUP BY 1
 ORDER BY 2;
 ```
+
