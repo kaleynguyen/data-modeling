@@ -1,6 +1,6 @@
 
 # Dashboard mockup
-![](dashboard.png)
+![](DataDraw.png)
 
 # High level: revenue, trials and product feature
 * Revenue with the assumption that a customer is actively paying throughout the entire time period. 
