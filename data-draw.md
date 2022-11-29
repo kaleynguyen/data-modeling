@@ -85,8 +85,3 @@ group by 1
 # Scorecard: I am working on this
 * churning
 * likelihood to convert to paying customers
-
- # General Assumptions
-# Overview Dashboard
-# Product Dashboard
-# Scorecard Dashboard
